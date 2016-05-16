@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>WEB CAM - DNEWSTI</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+ 
+		<div id="header">WEB CAM - CAPTURY</div> </br>
+	
+		<script language="JavaScript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		
+		<script language="JavaScript" src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+		
+		<script language="JavaScript" src="scriptcam.js"></script> 
+		
+		<script>
+
+			$(document).ready(function() {
+				$("#webcam").scriptcam({
+					onError:onError,
+					cornerRadius:0,
+					onWebcamReady:onWebcamReady
+				});
+			});
+
+			function onError(errorId,errorMsg) {
+				alert(errorMsg);
+			}			
+			function changeCamera() {
+				$.scriptcam.changeCamera($('#cameraNames').val());
+			}
+			function onWebcamReady(cameraNames,camera,microphoneNames,microphone,volume) {
+				$.each(cameraNames, function(index, text) {
+					$('#cameraNames').append( $('<option></option>').val(index).html(text) )
+				}); 
+				$('#cameraNames').val(camera);
+			}
+		</script> 
+	</head>
+	<body>
+		<div id="webcam"> 
+		</div>
+			
+</html>
